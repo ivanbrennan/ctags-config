@@ -47,7 +47,9 @@ add_or_create_hook() {
   local name=$(basename "$dest")
 
   if [ -e "$dest" ]; then
-    if ! contains_match "$src" "$dest"; then
+    if contains_match "$src" "$dest"; then
+      echo "### $name hook is good to go"
+    else
       echo "### Appending to existing $name hook"
       echo       >> "$dest"
       cat "$src" >> "$dest"
