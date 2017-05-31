@@ -27,7 +27,7 @@ echo '### Cloning installation scripts'
 (
   set -x
   git clone \
-      "git@${GITHUB_HOST}:ivanbrennan/configure-ctags.git" \
+      "git@${GITHUB_HOST}:ivanbrennan/ctags-config.git" \
       "${TEMP_DIR}/configure-ctags"
 )
 
