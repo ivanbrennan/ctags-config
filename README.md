@@ -6,7 +6,7 @@ curl -fsSL -H "Accept: application/vnd.github-blob.raw" \
   > /tmp/base-install.sh \
   && bash /tmp/base-install.sh --github-host github.com
 ```
-If you're using an SSH config file to manage multiple identities, you can specify the appropriate Host via the `--github-host` flag.
+If you're using an SSH config file to manage multiple identities, you can use the `--github-host` flag to specify the appropriate Host.
 
 ### Editor integration
 
