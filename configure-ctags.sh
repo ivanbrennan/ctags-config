@@ -7,7 +7,7 @@ main() {
 
   if [ -e "$config_file" ]; then
     backup_file="$config_file.backup.$(date +%s)"
-    echo "### Backing up existing to .ctags to $backup_file"
+    echo "### Backing up existing .ctags to $backup_file"
     cp "$config_file" "$backup_file"
   else
     echo "### Creating $config_file"
