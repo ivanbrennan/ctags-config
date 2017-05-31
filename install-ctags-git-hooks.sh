@@ -20,45 +20,45 @@ main() {
   fi
 
   target_dir=$template_dir/hooks
-  mkdir -p $target_dir
+  mkdir -p "$target_dir"
 
-  if [ -e $target_dir/ctags ]; then
+  if [ -e "$target_dir/ctags" ]; then
     backup_file="$target_dir/ctags.backup.$(date +%s)"
     echo "### Moving existing $target_dir/ctags to $backup_file"
-    mv $target_dir/ctags $backup_file
+    mv "$target_dir/ctags" "$backup_file"
   fi
 
   echo "### Creating $target_dir/ctags"
-  cp $source_dir/ctags $target_dir/ctags
-  chmod +x $target_dir/ctags
+  cp "$source_dir/ctags" "$target_dir/ctags"
+  chmod +x "$target_dir/ctags"
 
   for file in post-checkout post-commit post-merge; do
-    add_or_create_hook $source_dir/async-ctags-command \
-                       $target_dir/$file
+    add_or_create_hook "$source_dir/async-ctags-command" \
+                       "$target_dir/$file"
   done
 
-  add_or_create_hook $source_dir/rebase-command \
-                     $target_dir/post-rewrite
+  add_or_create_hook "$source_dir/rebase-command" \
+                     "$target_dir/post-rewrite"
 }
 
 add_or_create_hook() {
   local src=$1
   local dest=$2
-  local name=$(basename $dest)
+  local name=$(basename "$dest")
 
-  if [ -e $dest ]; then
-    if ! contains_match $src $dest; then
+  if [ -e "$dest" ]; then
+    if ! contains_match "$src" "$dest"; then
       echo "### Appending to existing $name hook"
-      echo     >> $dest
-      cat $src >> $dest
+      echo       >> "$dest"
+      cat "$src" >> "$dest"
     fi
   else
     echo "### Creating $name hook"
-    touch $dest
-    chmod +x $dest
-    echo '#!/bin/sh' >> $dest
-    echo             >> $dest
-    cat $src         >> $dest
+    touch "$dest"
+    chmod +x "$dest"
+    echo '#!/bin/sh' >> "$dest"
+    echo             >> "$dest"
+    cat "$src"       >> "$dest"
   fi
 }
 

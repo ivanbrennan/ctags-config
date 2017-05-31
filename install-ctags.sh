@@ -47,9 +47,9 @@ verify() {
   (
     echo "$1"
     read ans
-    if [ $ans = "no" ]; then
+    if [ "$ans" = "no" ]; then
       exit 1
-    elif [ $ans != "yes" ]; then
+    elif [ "$ans" != "yes" ]; then
       echo "Invalid response..."
       verify "$1"
     fi

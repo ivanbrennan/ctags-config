@@ -23,7 +23,7 @@ main() {
     echo '### Configuring Git template directory...'
     (
       set -x
-      git config --global init.templateDir $template_dir
+      git config --global init.templateDir "$template_dir"
     )
   else
     echo "### Git template directory already configured: $template_dir"
@@ -37,15 +37,15 @@ use_xdg_for_global_git_config() {
 }
 
 no_gitconfig_file() {
-  [ ! -e $HOME/.gitconfig ]
+  [ ! -e "$HOME/.gitconfig" ]
 }
 
 xdg_config_home_set() {
-  [ ! -z ${XDG_CONFIG_HOME+x} ]
+  [ ! -z "${XDG_CONFIG_HOME+x}" ]
 }
 
 xdg_git_config_file_exists() {
-  [ -e $XDG_CONFIG_HOME/git/config ]
+  [ -e "$XDG_CONFIG_HOME/git/config" ]
 }
 
 main
