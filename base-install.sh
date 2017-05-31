@@ -31,6 +31,6 @@ echo '### Cloning installation scripts'
       "${TEMP_DIR}/ctags-config"
 )
 
-bash ${TEMP_DIR}/configure-ctags/install.sh ${TEMP_DIR}
+bash ${TEMP_DIR}/ctags-config/install.sh ${TEMP_DIR}
 
 } # End of wrapping
