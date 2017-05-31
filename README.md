@@ -1,3 +1,5 @@
+### Install Ctags and configure automatic re-indexing via git hooks
+
 ``` Shell
 curl -fsSL -H "Accept: application/vnd.github-blob.raw" \
   https://api.github.com/repos/ivanbrennan/ctags-config/contents/base-install.sh \
@@ -5,3 +7,7 @@ curl -fsSL -H "Accept: application/vnd.github-blob.raw" \
   && bash /tmp/base-install.sh --github-host github.com
 ```
 If you're using an SSH config file to manage multiple identities, you can specify the appropriate Host via the `--github-host` flag.
+
+### Editor integration
+
+The above installation script sets up git hooks to keep an up-to-date tags file in `.git/tags`. Vim will automatically locate this file if you've installed the [fugitive](https://github.com/tpope/vim-fugitive) plugin.
