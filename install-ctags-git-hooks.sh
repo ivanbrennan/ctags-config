@@ -38,7 +38,7 @@ main() {
   cp "$source_dir/ctags" "$target_dir/ctags"
   chmod +x "$target_dir/ctags"
 
-  echo '    Writing hooks'
+  echo '    Writing hooks...'
   for file in post-checkout post-commit post-merge; do
     add_or_create_hook "$source_dir/async-ctags-command" \
                        "$target_dir/$file"
@@ -65,7 +65,7 @@ add_or_create_hook() {
     echo             >> "$dest"
     cat "$src"       >> "$dest"
   fi
-  echo "    ✓ $name"
+  echo "      $name"
 }
 
 contains_match() {

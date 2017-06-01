@@ -8,21 +8,17 @@
 set -eu
 set -o pipefail
 
-col_green="\x1b[32;01m"
-col_reset="\x1b[39;49;00m"
-green_check="${col_green}✓${col_reset}"
-
 main() {
   echo '### Checking ctags executable...'
 
   if universal_ctags_installed; then
-    echo -e "  $green_check Your ctags is already up-to-date (https://ctags.io)"
+    echo -e "  ✓ Your ctags is already up-to-date (https://ctags.io)"
   elif exuberant_ctags_installed; then
     verify_upgrade
   else
     echo "    Installing ctags..."
     install_universal_ctags
-    echo -e "  $green_check Installed successfully (https://ctags.io)"
+    echo -e "  ✓ Installed successfully (https://ctags.io)"
   fi
 }
 
@@ -47,7 +43,7 @@ EOF
     uninstall_exuberant_ctags
     echo '    Installing Universal Ctags'
     install_universal_ctags
-    echo -e "  $green_check Installed successfully (https://ctags.io)"
+    echo -e "  ✓ Installed successfully (https://ctags.io)"
   else
     echo '  ✓ Using Exuberant Ctags'
   fi
