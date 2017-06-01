@@ -10,20 +10,10 @@ main() {
   if [ -e "$config_file" ]; then
     create_backup "$config_file"
   else
-    echo "· Creating $config_file"
-    touch "$config_file"
+    create_file "$config_file"
   fi
 
-  options=(--languages=-javascript,sql,json,svg
-           --exclude=.git
-           --exclude=*.min.css)
-
-  echo "· Writing to $config_file"
-  for opt in ${options[@]}; do
-    if ! line_exists "$opt" "$config_file"; then
-       echo "$opt" >> "$config_file"
-    fi
-  done
+  write_options_to_file "$config_file"
 }
 
 create_backup() {
@@ -32,6 +22,27 @@ create_backup() {
 
   echo "· Backing up $file"
   (set -x; cp "$file" "$backup")
+}
+
+create_file() {
+  local file=$1
+  echo "· Creating $file"
+  touch "$file"
+}
+
+write_options_to_file() {
+  local file=$1
+  echo "· Writing options to $file"
+
+  options=(--languages=-javascript,sql,json,svg
+           --exclude=.git
+           --exclude=*.min.css)
+
+  for opt in ${options[@]}; do
+    if ! line_exists "$opt" "$file"; then
+      echo "$opt" >> "$file"
+    fi
+  done
 }
 
 line_exists() {
