@@ -11,7 +11,7 @@ while [[ $# -gt 0 ]]; do
       shift
       ;;
     *)
-      echo "Usage: $0 [-g|--github-host HOST]"
+      echo "Usage: bash $0 [-g|--github-host HOST]"
       exit 1
       ;;
   esac
