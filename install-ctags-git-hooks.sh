@@ -30,11 +30,11 @@ main() {
 
   if [ -e "$target_dir/ctags" ]; then
     backup_file="$target_dir/ctags.backup.$(date +%s)"
-    echo "    Moving existing $target_dir/ctags to $backup_file"
+    echo "  · Moving existing $target_dir/ctags to $backup_file"
     mv "$target_dir/ctags" "$backup_file"
   fi
 
-  echo "    Creating $target_dir/ctags"
+  echo "  · Creating $target_dir/ctags"
   cp "$source_dir/ctags" "$target_dir/ctags"
   chmod +x "$target_dir/ctags"
 
@@ -65,7 +65,7 @@ add_or_create_hook() {
     echo             >> "$dest"
     cat "$src"       >> "$dest"
   fi
-  echo "    $name"
+  echo "  · $name"
 }
 
 contains_match() {

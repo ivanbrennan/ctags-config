@@ -12,13 +12,13 @@ main() {
   echo '### Checking ctags executable...'
 
   if universal_ctags_installed; then
-    echo -e "  ✓ Your ctags is already up-to-date (https://ctags.io)"
+    echo '  · Your ctags is already up-to-date (https://ctags.io)'
   elif exuberant_ctags_installed; then
     verify_upgrade
   else
-    echo "    Installing ctags..."
+    echo '  · Installing ctags...'
     install_universal_ctags
-    echo -e "  ✓ Installed successfully (https://ctags.io)"
+    echo '  · Installed successfully (https://ctags.io)'
   fi
 }
 
@@ -39,13 +39,13 @@ verify_upgrade() {
 
 EOF
   if verify '  Do you want to replace Exuberant Ctags with Universal Ctags?'; then
-    echo '    Uninstalling Exuberant Ctags...'
+    echo '  · Uninstalling Exuberant Ctags...'
     uninstall_exuberant_ctags
-    echo '    Installing Universal Ctags'
+    echo '  · Installing Universal Ctags'
     install_universal_ctags
-    echo -e "  ✓ Installed successfully (https://ctags.io)"
+    echo '  · Installed successfully (https://ctags.io)'
   else
-    echo '  ✓ Using Exuberant Ctags'
+    echo '  · Using Exuberant Ctags'
   fi
 }
 
@@ -53,10 +53,10 @@ verify() {
   (
     echo "$1"
     read ans
-    if [ "$ans" = "no" ]; then
+    if [ "$ans" = 'no' ]; then
       exit 1
-    elif [ "$ans" != "yes" ]; then
-      echo "  ⨉ Invalid response..."
+    elif [ "$ans" != 'yes' ]; then
+      echo '  ⨉ Invalid response...'
       verify "$1"
     fi
   )

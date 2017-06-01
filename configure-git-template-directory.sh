@@ -21,13 +21,13 @@ main() {
       template_dir=~/.git_templates
     fi
 
-    echo '    Configuring Git template directory...'
+    echo '  · Configuring Git template directory...'
     (
       set -x
       git config --global init.templateDir "$template_dir"
     )
   else
-    echo "    Git template directory already configured: $template_dir"
+    echo "  · Git template directory already configured: $template_dir"
   fi
 }
 

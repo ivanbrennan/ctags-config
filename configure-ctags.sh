@@ -3,16 +3,16 @@
 set -eu
 
 main() {
-  echo "### Setting sensible defaults..."
+  echo '### Setting sensible defaults...'
 
   config_file=$HOME/.ctags
 
   if [ -e "$config_file" ]; then
     backup_file="$config_file.backup.$(date +%s)"
-    echo "    Backing up existing .ctags to $backup_file"
+    echo "  · Backing up existing .ctags to $backup_file"
     cp "$config_file" "$backup_file"
   else
-    echo "    Creating $config_file"
+    echo "  · Creating $config_file"
     touch "$config_file"
   fi
 
@@ -20,7 +20,7 @@ main() {
            --exclude=.git
            --exclude=*.min.css)
 
-  echo "    Writing to $config_file"
+  echo "  · Writing to $config_file"
   for opt in ${options[@]}; do
     if ! line_exists "$opt" "$config_file"; then
        echo "$opt" >> "$config_file"
