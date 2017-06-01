@@ -14,7 +14,15 @@ main() {
   if universal_ctags_installed; then
     echo '· Your ctags is already up-to-date (https://ctags.io)'
   elif exuberant_ctags_installed; then
-    verify_upgrade
+    if verify_upgrade; then
+      echo '· Uninstalling Exuberant Ctags...'
+      uninstall_exuberant_ctags
+      echo '· Installing Universal Ctags'
+      install_universal_ctags
+      echo '· Installed successfully (https://ctags.io)'
+    else
+      echo '· Using Exuberant Ctags'
+    fi
   else
     echo '· Installing ctags...'
     install_universal_ctags
@@ -38,15 +46,7 @@ verify_upgrade() {
   Universal Ctags (https://ctags.io) is recommended.
 
 EOF
-  if verify '* Do you want to replace Exuberant Ctags with Universal Ctags?'; then
-    echo '· Uninstalling Exuberant Ctags...'
-    uninstall_exuberant_ctags
-    echo '· Installing Universal Ctags'
-    install_universal_ctags
-    echo '· Installed successfully (https://ctags.io)'
-  else
-    echo '· Using Exuberant Ctags'
-  fi
+  verify '  Do you want to replace Exuberant Ctags with Universal Ctags?'
 }
 
 verify() {
