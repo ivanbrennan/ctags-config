@@ -15,7 +15,7 @@ main() {
 
   if [ -z "$template_dir" ]; then
     echo "ERROR: No git template directory configured."
-    echo "Run `bash configure-git-template-directory.sh`"
+    echo 'Run `bash configure-git-template-directory.sh`'
     exit 1
   fi
 
