@@ -14,19 +14,9 @@ main() {
   if universal_ctags_installed; then
     echo '· Your ctags is already up-to-date (https://ctags.io)'
   elif exuberant_ctags_installed; then
-    if verify_upgrade; then
-      echo '· Uninstalling Exuberant Ctags...'
-      uninstall_exuberant_ctags
-      echo '· Installing Universal Ctags'
-      install_universal_ctags
-      echo '· Installed successfully (https://ctags.io)'
-    else
-      echo '· Using Exuberant Ctags'
-    fi
+    maybe_switch_to_universal_ctags
   else
-    echo '· Installing ctags...'
     install_universal_ctags
-    echo '· Installed successfully (https://ctags.io)'
   fi
 }
 
@@ -38,7 +28,15 @@ exuberant_ctags_installed() {
   brew list ctags > /dev/null 2>&1
 }
 
-verify_upgrade() {
+maybe_switch_to_universal_ctags() {
+  if verify_switch; then
+    switch_to_universal_ctags
+  else
+    echo '· Using Exuberant Ctags'
+  fi
+}
+
+verify_switch() {
   cat <<EOF
 
   You currently have Exuberant Ctags (http://ctags.sourceforge.net) installed.
@@ -62,11 +60,18 @@ verify() {
   )
 }
 
+switch_to_universal_ctags() {
+  uninstall_exuberant_ctags
+  install_universal_ctags
+}
+
 uninstall_exuberant_ctags() {
+  echo '· Uninstalling Exuberant Ctags'
   brew uninstall ctags
 }
 
 install_universal_ctags() {
+  echo '· Installing Universal Ctags (https://ctags.io)'
   brew tap universal-ctags/universal-ctags
   brew install --HEAD universal-ctags
 }
