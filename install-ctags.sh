@@ -9,16 +9,16 @@ set -eu
 set -o pipefail
 
 main() {
-  echo '### Checking ctags executable...'
+  echo 'Checking ctags executable...'
 
   if universal_ctags_installed; then
-    echo '  · Your ctags is already up-to-date (https://ctags.io)'
+    echo '· Your ctags is already up-to-date (https://ctags.io)'
   elif exuberant_ctags_installed; then
     verify_upgrade
   else
-    echo '  · Installing ctags...'
+    echo '· Installing ctags...'
     install_universal_ctags
-    echo '  · Installed successfully (https://ctags.io)'
+    echo '· Installed successfully (https://ctags.io)'
   fi
 }
 
@@ -33,19 +33,19 @@ exuberant_ctags_installed() {
 verify_upgrade() {
   cat <<EOF
 
-    You currently have Exuberant Ctags (http://ctags.sourceforge.net) installed.
-    This works fine, but is no longer actively-maintained.
-    Universal Ctags (https://ctags.io) is recommended.
+  You currently have Exuberant Ctags (http://ctags.sourceforge.net) installed.
+  This works fine, but is no longer actively-maintained.
+  Universal Ctags (https://ctags.io) is recommended.
 
 EOF
-  if verify '  Do you want to replace Exuberant Ctags with Universal Ctags?'; then
-    echo '  · Uninstalling Exuberant Ctags...'
+  if verify '* Do you want to replace Exuberant Ctags with Universal Ctags?'; then
+    echo '· Uninstalling Exuberant Ctags...'
     uninstall_exuberant_ctags
-    echo '  · Installing Universal Ctags'
+    echo '· Installing Universal Ctags'
     install_universal_ctags
-    echo '  · Installed successfully (https://ctags.io)'
+    echo '· Installed successfully (https://ctags.io)'
   else
-    echo '  · Using Exuberant Ctags'
+    echo '· Using Exuberant Ctags'
   fi
 }
 
@@ -56,7 +56,7 @@ verify() {
     if [ "$ans" = 'no' ]; then
       exit 1
     elif [ "$ans" != 'yes' ]; then
-      echo '  ⨉ Invalid response...'
+      echo '⨉ Invalid response...'
       verify "$1"
     fi
   )

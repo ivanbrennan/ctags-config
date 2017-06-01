@@ -6,7 +6,7 @@
 set -eu
 
 main() {
-  echo '### Checking for Git template directory...'
+  echo 'Checking for Git template directory...'
 
   set +eu
   envvar_template_dir=$GIT_TEMPLATE_DIR
@@ -21,13 +21,13 @@ main() {
       template_dir=~/.git_templates
     fi
 
-    echo '  · Configuring Git template directory...'
+    echo '· Configuring Git template directory...'
     (
       set -x
       git config --global init.templateDir "$template_dir"
     )
   else
-    echo "  · Git template directory already configured: $template_dir"
+    echo "· Git template directory already configured: $template_dir"
   fi
 }
 

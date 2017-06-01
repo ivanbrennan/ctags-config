@@ -23,7 +23,7 @@ TEMP_DIR="$(mktemp -d -t ctags-temp.XXXXXXXXXX)"
 
 trap 'rm -rf "$TEMP_DIR"' EXIT
 
-echo '### Cloning installation scripts'
+echo 'Cloning installation scripts'
 (
   set -x
   git clone \

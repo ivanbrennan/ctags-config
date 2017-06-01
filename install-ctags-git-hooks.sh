@@ -9,7 +9,7 @@ col_reset="\x1b[39;49;00m"
 red_x="${col_red}⨉${col_reset}"
 
 main() {
-  echo '### Writing ctags generation script...'
+  echo 'Writing ctags generation script...'
 
   source_dir=$TEMP_DIR/ctags-config/templates
 
@@ -20,8 +20,8 @@ main() {
   template_dir=${envvar_template_dir:-${config_template_dir}}
 
   if [ -z "$template_dir" ]; then
-    echo -e "  $red_x No git template directory configured."
-    echo '    Run `bash configure-git-template-directory.sh`'
+    echo -e "$red_x No git template directory configured."
+    echo '  Run `bash configure-git-template-directory.sh`'
     exit 1
   fi
 
@@ -30,15 +30,15 @@ main() {
 
   if [ -e "$target_dir/ctags" ]; then
     backup_file="$target_dir/ctags.backup.$(date +%s)"
-    echo "  · Moving existing $target_dir/ctags to $backup_file"
+    echo "· Moving existing $target_dir/ctags to $backup_file"
     mv "$target_dir/ctags" "$backup_file"
   fi
 
-  echo "  · Creating $target_dir/ctags"
+  echo "· Creating $target_dir/ctags"
   cp "$source_dir/ctags" "$target_dir/ctags"
   chmod +x "$target_dir/ctags"
 
-  echo '### Writing hooks...'
+  echo 'Writing hooks...'
   for file in post-checkout post-commit post-merge; do
     add_or_create_hook "$source_dir/async-ctags-command" \
                        "$target_dir/$file"
@@ -65,7 +65,7 @@ add_or_create_hook() {
     echo             >> "$dest"
     cat "$src"       >> "$dest"
   fi
-  echo "  · $name"
+  echo "· $name"
 }
 
 contains_match() {
