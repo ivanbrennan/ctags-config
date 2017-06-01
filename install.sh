@@ -13,4 +13,4 @@ bash ${TEMP_DIR}/ctags-config/configure-ctags.sh
 bash ${TEMP_DIR}/ctags-config/configure-git-template-directory.sh
 bash ${TEMP_DIR}/ctags-config/install-ctags-git-hooks.sh ${TEMP_DIR}
 
-echo -e "$green_check Finished successfully"
+echo -e "Finished successfully $green_check"
