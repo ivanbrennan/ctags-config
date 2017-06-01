@@ -8,9 +8,7 @@ main() {
   config_file=$HOME/.ctags
 
   if [ -e "$config_file" ]; then
-    backup_file="$config_file.backup.$(date +%s)"
-    echo "· Backing up existing .ctags to $backup_file"
-    cp "$config_file" "$backup_file"
+    create_backup "$config_file"
   else
     echo "· Creating $config_file"
     touch "$config_file"
@@ -26,6 +24,14 @@ main() {
        echo "$opt" >> "$config_file"
     fi
   done
+}
+
+create_backup() {
+  local file=$1
+  local backup="$file.backup.$(date +%s)"
+
+  echo "· Backing up $file"
+  (set -x; cp "$file" "$backup")
 }
 
 line_exists() {
