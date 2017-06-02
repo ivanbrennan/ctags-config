@@ -30,8 +30,8 @@ main() {
 
   if [ -e "$target_dir/ctags" ]; then
     backup_file="$target_dir/ctags.backup.$(date +%s)"
-    echo "· Moving existing $target_dir/ctags to $backup_file"
-    mv "$target_dir/ctags" "$backup_file"
+    echo "· Backing up $target_dir/ctags"
+    (set -x; mv "$target_dir/ctags" "$backup_file")
   fi
 
   echo "· Creating $target_dir/ctags"
