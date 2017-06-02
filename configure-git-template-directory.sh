@@ -15,8 +15,10 @@ main() {
   template_dir=${envvar_template_dir:-${config_template_dir}}
 
   if [ -z "$template_dir" ]; then
-    if use_xdg_for_global_git_config; then
+    if use_xdg_config; then
       template_dir=$XDG_CONFIG_HOME/git/templates
+    elif use_dot_config; then
+      template_dir=$HOME/.config/git/templates
     else
       template_dir=~/.git_templates
     fi
@@ -31,7 +33,7 @@ main() {
   fi
 }
 
-use_xdg_for_global_git_config() {
+use_xdg_config() {
   no_gitconfig_file &&
     xdg_config_home_set &&
     xdg_git_config_file_exists
@@ -47,6 +49,15 @@ xdg_config_home_set() {
 
 xdg_git_config_file_exists() {
   [ -e "$XDG_CONFIG_HOME/git/config" ]
+}
+
+use_dot_config() {
+  no_gitconfig_file &&
+    dot_config_git_config_file_exists
+}
+
+dot_config_git_config_file_exists() {
+  [ -e "$HOME/.config/git/config" ]
 }
 
 main
