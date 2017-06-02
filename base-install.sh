@@ -23,13 +23,9 @@ TEMP_DIR="$(mktemp -d -t ctags-temp.XXXXXXXXXX)"
 
 trap 'rm -rf "$TEMP_DIR"' EXIT
 
-echo 'Cloning installation scripts'
-(
-  set -x
-  git clone \
-      "git@${GITHUB_HOST}:ivanbrennan/ctags-config.git" \
-      "${TEMP_DIR}/ctags-config"
-)
+git clone \
+    "git@${GITHUB_HOST}:ivanbrennan/ctags-config.git" \
+    "${TEMP_DIR}/ctags-config"
 
 bash ${TEMP_DIR}/ctags-config/install.sh ${TEMP_DIR}
 
