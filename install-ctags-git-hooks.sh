@@ -65,7 +65,7 @@ add_or_create_hook() {
     echo             >> "$dest"
     cat "$src"       >> "$dest"
   fi
-  echo "· $name"
+  echo "· $name ✓"
 }
 
 contains_match() {
