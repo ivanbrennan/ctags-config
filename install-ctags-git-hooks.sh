@@ -14,7 +14,7 @@ main() {
   source_dir=$TEMP_DIR/ctags-config/templates
 
   envvar_template_dir=${GIT_TEMPLATE_DIR-}
-  config_template_dir=$(git config --global --get --path init.templateDir || : )
+  config_template_dir=$(git config --global --get --path init.templateDir || :)
   template_dir=${envvar_template_dir:-${config_template_dir}}
 
   if [ -z "$template_dir" ]; then
