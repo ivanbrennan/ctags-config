@@ -8,10 +8,8 @@ set -eu
 main() {
   echo 'Checking for Git template directory...'
 
-  set +eu
-  envvar_template_dir=$GIT_TEMPLATE_DIR
-  config_template_dir=$(git config --global --get --path init.templateDir)
-  set -eu
+  envvar_template_dir=${GIT_TEMPLATE_DIR-}
+  config_template_dir=$(git config --global --get --path init.templateDir || : )
   template_dir=${envvar_template_dir:-${config_template_dir}}
 
   if [ -z "$template_dir" ]; then
