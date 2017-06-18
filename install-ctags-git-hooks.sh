@@ -4,8 +4,8 @@ set -eu
 
 TEMP_DIR=$1
 
-col_red="\e[31;01m"
-col_reset="\e[39;49;00m"
+col_red="\033[31;01m"
+col_reset="\033[39;49;00m"
 
 main() {
   printf 'Writing ctags generation script...\n'
