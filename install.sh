@@ -9,6 +9,6 @@ bash ${TEMP_DIR}/ctags-config/configure-ctags.sh
 bash ${TEMP_DIR}/ctags-config/configure-git-template-directory.sh
 bash ${TEMP_DIR}/ctags-config/install-ctags-git-hooks.sh ${TEMP_DIR}
 
-col_green="\x1b[32;01m"
-col_reset="\x1b[39;49;00m"
-echo -e "Done ${col_green}✓${col_reset}"
+col_green="\e[32;01m"
+col_reset="\e[39;49;00m"
+printf 'Done %b✓%b\n' "$col_green" "$col_reset"

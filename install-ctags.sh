@@ -9,10 +9,10 @@ set -eu
 set -o pipefail
 
 main() {
-  echo 'Checking ctags executable...'
+  printf 'Checking ctags executable...\n'
 
   if universal_ctags_installed; then
-    echo '· Your ctags is already up-to-date (https://ctags.io)'
+    printf '· Your ctags is already up-to-date (https://ctags.io)\n'
   elif exuberant_ctags_installed; then
     maybe_switch_to_universal_ctags
   else
@@ -32,7 +32,7 @@ maybe_switch_to_universal_ctags() {
   if verify_switch; then
     switch_to_universal_ctags
   else
-    echo '· Using Exuberant Ctags'
+    printf '· Using Exuberant Ctags\n'
   fi
 }
 
@@ -49,12 +49,12 @@ EOF
 
 verify() {
   (
-    echo "$1"
+    printf '%s\n' "$1"
     read ans
     if [ "$ans" = 'no' ]; then
       exit 1
     elif [ "$ans" != 'yes' ]; then
-      echo '⨉ Invalid response...'
+      printf '⨉ Invalid response...\n'
       verify "$1"
     fi
   )
@@ -66,12 +66,12 @@ switch_to_universal_ctags() {
 }
 
 uninstall_exuberant_ctags() {
-  echo '· Uninstalling Exuberant Ctags'
+  printf '· Uninstalling Exuberant Ctags\n'
   brew uninstall ctags
 }
 
 install_universal_ctags() {
-  echo '· Installing Universal Ctags (https://ctags.io)'
+  printf '· Installing Universal Ctags (https://ctags.io)\n'
   brew tap universal-ctags/universal-ctags
   brew install --HEAD universal-ctags
 }

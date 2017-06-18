@@ -3,7 +3,7 @@
 set -eu
 
 main() {
-  echo 'Setting sensible defaults...'
+  printf 'Setting sensible defaults...\n'
 
   config_file=$HOME/.ctags
 
@@ -20,19 +20,19 @@ create_backup() {
   local file=$1
   local backup="$file.backup.$(date +%s)"
 
-  echo "· Backing up $file"
+  printf '· Backing up %s\n' "$file"
   (set -x; cp "$file" "$backup")
 }
 
 create_file() {
   local file=$1
-  echo "· Creating $file"
+  printf '· Creating %s\n' "$file"
   touch "$file"
 }
 
 write_options_to_file() {
   local file=$1
-  echo "· Writing options to $file"
+  printf '· Writing options to %s\n' "$file"
 
   options=(--languages=-javascript,sql,json,svg
            --exclude=.git
@@ -40,7 +40,7 @@ write_options_to_file() {
 
   for opt in ${options[@]}; do
     if ! line_exists "$opt" "$file"; then
-      echo "$opt" >> "$file"
+      printf '%s\n' "$opt" >> "$file"
     fi
   done
 }
