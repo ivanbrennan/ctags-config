@@ -50,7 +50,7 @@ EOF
 verify() {
   (
     printf '%s\n' "$1"
-    read ans
+    read -r ans
     if [ "$ans" = 'no' ]; then
       exit 1
     elif [ "$ans" != 'yes' ]; then

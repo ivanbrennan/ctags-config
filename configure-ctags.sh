@@ -34,11 +34,11 @@ write_options_to_file() {
   local file=$1
   printf '· Writing options to %s\n' "$file"
 
-  options=(--languages=-javascript,sql,json,svg
-           --exclude=.git
-           --exclude=*.min.css)
+  options=('--languages=-javascript,sql,json,svg'
+           '--exclude=.git'
+           '--exclude=*.min.css')
 
-  for opt in ${options[@]}; do
+  for opt in "${options[@]}"; do
     if ! line_exists "$opt" "$file"; then
       printf '%s\n' "$opt" >> "$file"
     fi

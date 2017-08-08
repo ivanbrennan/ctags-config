@@ -67,8 +67,9 @@ add_or_create_hook() {
 contains_match() {
   local subfile=$1
   local superfile=$2
+  local pattern="*$(<$subfile)*"
 
-  [[ $(<$superfile) = *$(<$subfile)* ]]
+  [[ "$(<$superfile)" = $pattern ]]
 }
 
 main

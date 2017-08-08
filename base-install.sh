@@ -11,7 +11,7 @@ while [[ $# -gt 0 ]]; do
       shift
       ;;
     *)
-      printf 'Usage: bash %s [-g|--github-host HOST]\n' $0
+      printf 'Usage: bash %s [-g|--github-host HOST]\n' "$0"
       exit 1
       ;;
   esac
@@ -27,6 +27,6 @@ git clone \
     "git@${GITHUB_HOST}:ivanbrennan/ctags-config.git" \
     "${TEMP_DIR}/ctags-config"
 
-bash ${TEMP_DIR}/ctags-config/install.sh ${TEMP_DIR}
+bash "${TEMP_DIR}/ctags-config/install.sh" "${TEMP_DIR}"
 
 } # End of wrapping
